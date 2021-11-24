@@ -57,4 +57,9 @@ class User extends Authenticatable
 
         return $this->hasManyThrough(Visit::class, Link::class, 'user_id', 'link_id');
     }
+
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
 }
