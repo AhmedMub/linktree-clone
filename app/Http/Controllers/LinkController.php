@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Link;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LinkController extends Controller
 {
@@ -13,7 +16,9 @@ class LinkController extends Controller
      */
     public function index()
     {
-        return view('dashboard.pages.dashboard');
+        $links = Auth::user()->links()->get();
+
+        return view('dashboard.pages.dashboard', compact('links'));
     }
 
     /**

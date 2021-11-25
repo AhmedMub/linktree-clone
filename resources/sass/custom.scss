@@ -1,0 +1,8 @@
+div.disabled {
+    div {
+        a {
+            cursor: not-allowed;
+            pointer-events: all !important;
+        }
+    }
+}
