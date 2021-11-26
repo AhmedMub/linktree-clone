@@ -2,3 +2,11 @@ div.disabled div a {
   cursor: not-allowed;
   pointer-events: all !important;
 }
+
+.toast-top-left {
+  top: 58px !important;
+}
+
+.page-container {
+  min-height: 0;
+}

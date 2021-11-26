@@ -18,6 +18,7 @@ class CreateLinksTable extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('name');
             $table->text('link');
+            $table->integer('active')->default(1);
             $table->timestamps();
         });
     }

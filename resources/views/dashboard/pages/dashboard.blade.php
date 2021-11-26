@@ -6,13 +6,7 @@
             <div class="main-content">
             <div class="main-content-inner">
                 <!-- table primary start -->
-                @if (Auth::check())
-                    <div class="signed-message">
-                        @if (session('logged-in'))
-                            <p> {{session('logged-in')}} </p>
-                        @endif
-                    </div>
-                @endif
+
                 <div class="mt-5">
                     <div class="card">
                         <div class="card-body">
@@ -43,7 +37,10 @@
                                                     <td> {{$link->updated_at->diffForHumans()}} </td>
                                                     <td>120</td>
                                                     <td>
-                                                        <i class="ti-trash"></i>
+                                                        <a href="#" class="mr-2">
+                                                            <i class="fa fa-pencil-square fa-lg" aria-hidden="true"></i>
+                                                        </a>
+                                                        <a href="#"><i class="ti-trash fa-lg"></i></a>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -59,14 +56,5 @@
         </div>
         <!-- main content area end -->
     </div>
-
-    {{-- <ul class="icons-ul">
-            <li><i class="icon-li icon-ok"></i>Embedded icon using the &lt;i&gt; tag</li>
-            <li><i class="icon-li icon-ok"></i>Doesn't work with background-image</li>
-            <li><i class="icon-li icon-ok"></i>We can use the :before psuedo class</li>
-            <li><i class="icon-li icon-ok"></i>Works in IE8+, FireFox 21+, Chrome 26+, Safari 5.1+, most mobile browsers</li>
-            <li><i class="icon-li icon-ok"></i>See <a href="http://caniuse.com/#search=before">CanIUse.com</a> for browser support</li>
-        </ul> --}}
-        <button class="btn btn-primary" id="tryMe">Try Me</button>
 </div>
 @endsection

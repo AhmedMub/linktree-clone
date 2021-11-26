@@ -32,7 +32,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Custom Styles -->
-    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 </head>
 <body>
 
@@ -52,6 +52,8 @@
             @yield('content')
         </section>
 
+        @include('layouts.footer')
+
     {{-- Start Scripts --}}
     <!-- jquery latest version -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -70,5 +72,11 @@
     {{-- Custom Script --}}
     <script src="{{ asset('js/custom.js') }}"></script>
     {{-- end Scripts --}}
+
+    {{-- Start Toastr Messages --}}
+    @if (Auth::check())
+        @include('layouts.toastr')
+    @endif
+    {{-- End Toastr Messages --}}
 </body>
 </html>
