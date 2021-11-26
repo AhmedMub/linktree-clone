@@ -18,7 +18,7 @@ class LinkController extends Controller
     {
         $links = Auth::user()->links()->get();
 
-        return view('dashboard.pages.dashboard', compact('links'));
+        return view('dashboard.dashboard', compact('links'));
     }
 
     /**
@@ -28,7 +28,7 @@ class LinkController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.create');
     }
 
     /**

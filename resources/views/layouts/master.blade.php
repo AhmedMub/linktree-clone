@@ -49,7 +49,14 @@
 
 
         <section>
-            @yield('content')
+            <div class="page-container">
+                <!-- page title area end -->
+                <div class="main-content">
+                    <div class="main-content-inner">
+                        @yield('content')
+                    </div>
+                </div>
+            </div>
         </section>
 
         @include('layouts.footer')
