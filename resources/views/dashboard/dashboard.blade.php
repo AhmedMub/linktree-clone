@@ -28,17 +28,58 @@
                                         <th scope="row"> {{$link->id}} </th>
                                         <td>{{$link->name}}</td>
                                         <td> {{$link->link}} </td>
-                                        <td> ative </td>
+                                        <td>
+                                            @if ($link->active == 1)
+                                                <label class="switch">
+                                                    <input type="checkbox" checked>
+                                                    <span class="slider round"></span>
+                                                </label>
+                                            @else
+                                                <span class="badge badge-pill badge-warning">Inactive</span>
+                                            @endif
+                                        </td>
                                         <td> {{$link->created_at->diffForHumans()}} </td>
                                         <td> {{$link->updated_at->diffForHumans()}} </td>
                                         <td>120</td>
                                         <td>
-                                            <a href="#" class="mr-2">
-                                                <i class="fa fa-pencil-square fa-lg" aria-hidden="true"></i>
-                                            </a>
-                                            <a href="#"><i class="ti-trash fa-lg"></i></a>
+                                            <div class="d-flex justify-content-center">
+                                                <a href=" {{route('links.edit', $link->id)}} "class="mr-2 edit-Link"  data-toggle="modal" data-target="#editLink">
+                                                    <i class="fa fa-pencil-square fa-lg" aria-hidden="true"></i>
+                                                </a>
+
+                                                <button class="deleteLink" data-toggle="modal" data-target="#deleteLink">
+                                                    <i class="fa fa-trash fa-lg" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
+                                    {{-- Delete Link confiramtion --}}
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="deleteLink" tabindex="-1" role="dialog" aria-labelledby="LinkDelete" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <h5 class="modal-title" id="LinkDelete">Delete Link</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria- hidden="true">&times;</span>
+                                            </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Wooow, Are you sure from deleting this Link?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                {{-- Delete Link --}}
+                                                {!! Form::open([ 'method'=>'delete', 'route'=>['links.destroy', $link->id], 'class'=>'d-inline delete-link-form']) !!}
+                                                {!! Form::hidden('id', $link->id, ['class'=>'link-id']) !!}
+                                                <button type="submit" class="btn btn-danger">
+                                                    <strong>Delete Link</strong>
+                                                </button>
+                                                {!! Form::close() !!}
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
                                 @endforeach
                             </tbody>
                         </table>
@@ -54,8 +95,12 @@
         </div>
 
     @endif
-    <div>
-        <a href=" {{route('links.create')}} "><button class="btn btn-primary btn-flat">Add Link</button></a>
+    <div class="mt-3">
+        <button type="button" class="btn btn-primary btn-flat" data-toggle="modal" data-target="#createLink">Add Link</button>
     </div>
 </div>
+
+{{-- components --}}
+<x-create-link/>
+@include('dashboard.edit')
 @endsection

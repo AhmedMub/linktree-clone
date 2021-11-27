@@ -5,8 +5,8 @@
             <div class="breadcrumbs-area clearfix">
                 <h4 class="page-title pull-left">Dashboard</h4>
                 <ul class="breadcrumbs pull-left">
-                    <li><a href="index.html">Home</a></li>
-                    <li><span>Table Basic</span></li>
+                    <li><a href="index.html">{{Auth::user()->username}}</a></li>
+                    <li><span>Links</span></li>
                 </ul>
             </div>
         </div>
