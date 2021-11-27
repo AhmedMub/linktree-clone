@@ -29,14 +29,16 @@
                                         <td>{{$link->name}}</td>
                                         <td> {{$link->link}} </td>
                                         <td>
-                                            @if ($link->active == 1)
+                                            <label class="switch">
+                                                <input name="id" value=" {{$link->id}} " type="checkbox" checked>
+                                                <span class="slider round"></span>
+                                            </label>
+                                            {{-- <form class="change-status-form" method="GET" action=" {{route('links.status', $link->id)}} ">
                                                 <label class="switch">
-                                                    <input type="checkbox" checked>
+                                                    <input name="active" type="checkbox" checked>
                                                     <span class="slider round"></span>
                                                 </label>
-                                            @else
-                                                <span class="badge badge-pill badge-warning">Inactive</span>
-                                            @endif
+                                            </form> --}}
                                         </td>
                                         <td> {{$link->created_at->diffForHumans()}} </td>
                                         <td> {{$link->updated_at->diffForHumans()}} </td>

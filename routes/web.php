@@ -30,6 +30,8 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
 
     Route::resource('links', LinkController::class);
 
+    Route::get('links/status', [LinkController::class, 'status'])->name('links.status');
+
     //user settings
     Route::prefix('settings')->group(function () {
 

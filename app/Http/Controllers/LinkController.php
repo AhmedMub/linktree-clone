@@ -150,4 +150,14 @@ class LinkController extends Controller
             ]);
         }
     }
+
+    //change Active status of the link
+    public function status(Request $request)
+    {
+
+
+        return response()->json([
+            'status' => $request
+        ]);
+    }
 }
