@@ -29,16 +29,9 @@
                                         <td>{{$link->name}}</td>
                                         <td> {{$link->link}} </td>
                                         <td>
-                                            <label class="switch">
-                                                <input name="id" value=" {{$link->id}} " type="checkbox" checked>
-                                                <span class="slider round"></span>
-                                            </label>
-                                            {{-- <form class="change-status-form" method="GET" action=" {{route('links.status', $link->id)}} ">
-                                                <label class="switch">
-                                                    <input name="active" type="checkbox" checked>
-                                                    <span class="slider round"></span>
-                                                </label>
-                                            </form> --}}
+                                            {{-- <livewire:buttons.featured :link="$link" :name="'status'" :key="'status'.$link->id"/> --}}
+                                                <livewire:buttons.featured :link="$link" :name="'status'" :key="'status'.$link->id" />
+
                                         </td>
                                         <td> {{$link->created_at->diffForHumans()}} </td>
                                         <td> {{$link->updated_at->diffForHumans()}} </td>

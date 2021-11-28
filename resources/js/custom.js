@@ -185,18 +185,10 @@ $(function () {
 
 //             if ($(this).is(":checked")) {
 
-//                 $.ajax({
 
-//                     url: '/links/status',
-//                     method: 'get',
-//                     processData: false,
-//                     contentType: false,
-//                     cache: false,
-//                     data: {}
-//                 });
 //             } else {
 
-//                 console.log('not checked');
+//                 $(this).removeAttr('checked')
 //             }
 //          });
 //      });

@@ -15,5 +15,9 @@ mix.js('resources/js/custom.js', 'public/js/custom.js')
     .sass('resources/sass/custom.scss', 'public/css/custom.css')
     .sourceMaps();
 
+    mix.postCss("resources/css/app.css", "public/css", [
+     require("tailwindcss"),
+    ]);
+
 mix.disableNotifications();
 
