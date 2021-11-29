@@ -760,7 +760,7 @@ ul.breadcrumbs {
     -webkit-transform: none !important;
     transform: none !important;
     top: 130% !important;
-    right: 30px !important;
+    right: 10px !important;
     left: auto !important;
     -webkit-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;

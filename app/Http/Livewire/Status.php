@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Livewire\Buttons;
+namespace App\Http\Livewire;
 
 use App\Models\Link;
 use Livewire\Component;
 
-class Featured extends Component
-{
 
+class Status extends Component
+{
     public Link $link;
 
     public string $name;
@@ -22,7 +22,7 @@ class Featured extends Component
 
     public function render()
     {
-        return view('livewire.buttons.status');
+        return view('livewire.status');
     }
 
     public function updating($name, $value)
