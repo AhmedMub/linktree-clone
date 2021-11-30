@@ -85,11 +85,19 @@ class LinkController extends Controller
      */
     public function edit($id)
     {
+
         $linkInfo = Link::findOrFail($id);
 
-        return response()->json([
-            'linkInfo' => $linkInfo
-        ]);
+
+        if ($linkInfo->user_id == Auth::id()) {
+
+            return response()->json([
+                'linkInfo' => $linkInfo
+            ]);
+        } else {
+
+            return abort(404);
+        }
     }
 
     /**
@@ -102,6 +110,11 @@ class LinkController extends Controller
     public function update(Request $request, $id)
     {
         $findLink = Link::findOrFail($id);
+
+        if ($findLink->user_id !== Auth::id()) {
+
+            return abort(401);
+        }
         $validate = Validator::make($request->all(), [
 
             'name' => ['required', 'max:20', 'string'],

@@ -121,7 +121,6 @@ $(function () {
                     $('form').trigger('reset');
                     $('input').removeClass('is-invalid');
                     $('.invalid-feedback strong').html("");
-
                     toastr.options = {
                         "positionClass": "toast-top-left",
                         "timeOut": "4000",
@@ -130,10 +129,11 @@ $(function () {
                     }
                     toastr["info"]("Link Has Been Updated Successfully");
 
-                    //refresh when close-btn clicked
-                     $('.btn-close, .close').on('click', function () {
+                    setTimeout(() => {
+                        //refresh when close-btn clicked
                         location.reload();
-                      });
+                    }, 2000);
+
                 }
             },
         });
@@ -175,21 +175,3 @@ $(function () {
     });
 });
 
-// $(function() {
-
-//     $('.switch').each(function () {
-
-//         let targetElement = $(this).find('input:checkbox');
-
-//         targetElement.on('change', function () {
-
-//             if ($(this).is(":checked")) {
-
-
-//             } else {
-
-//                 $(this).removeAttr('checked')
-//             }
-//          });
-//      });
-// });

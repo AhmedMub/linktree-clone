@@ -107,3 +107,8 @@ div.disabled div a {
 #button-1 .layer {
   transition: 0.3s ease all;
 }
+
+.settings {
+  width: 50%;
+  margin: 4rem auto;
+}

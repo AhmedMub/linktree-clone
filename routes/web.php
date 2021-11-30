@@ -33,10 +33,10 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::get('links/status', [LinkController::class, 'status'])->name('links.status');
 
     //user settings
-    Route::prefix('settings')->group(function () {
+    Route::prefix('settings')->name('user.')->group(function () {
 
-        Route::get('edit', [UserController::class, 'edit']);
-        Route::post('update', [UserController::class, 'update']);
+        Route::get('edit', [UserController::class, 'edit'])->name('edit');
+        Route::post('update', [UserController::class, 'update'])->name('update');
     });
 });
 
