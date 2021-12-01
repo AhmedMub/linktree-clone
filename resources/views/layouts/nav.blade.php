@@ -3,7 +3,9 @@
     <div class="row align-items-center">
         <div class="col-sm-6">
             <div class="breadcrumbs-area clearfix">
-                <h4 class="page-title pull-left">Dashboard</h4>
+                <a href=" {{route('links.index')}} ">
+                    <h4 class="page-title pull-left">Dashboard</h4>
+                </a>
                 <ul class="breadcrumbs pull-left">
                     <li><a href="index.html">{{Auth::user()->username}}</a></li>
                     <li><span>Links</span></li>
@@ -16,7 +18,10 @@
                 <h4 class="user-name dropdown-toggle" data-toggle="dropdown"> {{Auth::user()->username}} <i
                         class="fa fa-angle-down"></i></h4>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href=" {{route('user.edit')}} ">Settings</a>
+                    <a href=" {{route('user.edit')}} " class="dropdown-item settings-edit" data-toggle="modal"
+                        data-target="#editSettings">
+                        Settings
+                    </a>
                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();
                     ">

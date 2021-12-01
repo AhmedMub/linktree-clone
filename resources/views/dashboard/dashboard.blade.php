@@ -101,4 +101,5 @@
 {{-- components --}}
 <x-create-link />
 @include('dashboard.edit')
+@include('dashboard.user.edit')
 @endsection
