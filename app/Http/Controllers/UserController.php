@@ -26,28 +26,76 @@ class UserController extends Controller
 
         $validator = Validator::make($request->all(), [
 
-            'username' => ['required', 'max:20', 'string'],
-            'email' => ['required', 'email', 'unique:links,link,' . $auth],
-            'background_color' => ['required', 'max:20', 'string', 'email', 'unique:links,link,' . $auth],
-            'text_color' => ['required', 'max:20', 'string', 'email', 'unique:links,link,' . $auth],
+            'username' => ['required', 'max:20', 'regex:/^[a-z0-9\s]*$/i'],
+            'email' => ['required', 'email'],
+            'background_color' => ['min:2', 'regex:/^[a-z0-9\s]*$/i', 'nullable'],
+            'text_color' => ['max:20', 'regex:/^[a-z0-9\s]*$/i', 'nullable'],
             'image' => ['mimes:jpeg,png,jpg', 'max:500'],
-            'password' => ['required', 'string', 'min:3', 'confirmed'],
         ]);
+
 
         if ($validator->fails()) {
 
             return response()->json([
 
                 'status' => 'fails',
-                'data' => $validator->errors()->toArray()
+                'errors' => $validator->errors()->toArray()
             ]);
         }
 
-        return response()->json([
+        if ($request->image) {
 
-            'status' => 'success',
-            'data' => 'data'
-        ]);
+            $request->image->store('images');
+        }
+
+        if (!empty($request->password)) {
+
+            $request->validate([
+                'password' => ['regex:/^[a-z0-9\s]*$/i', 'min:3', 'confirmed'],
+            ]);
+
+            User::whereId($auth->id)->update([
+                'password' => $request->password
+            ]);
+        }
+
+        //TODO detect image changes
+        if ($request->username !== $auth->username || $request->email !== $auth->email || $request->background_color !== $auth->background_color || $request->text_color !== $auth->text_color || $request->image !== $auth->image) {
+            return response()->json([
+
+                'status' => 'test',
+                'data' => 'changed'
+            ]);
+        } else {
+            return response()->json([
+
+                'status' => 'test',
+                'data' => 'nochange'
+            ]);
+        }
+
+        // $user = User::whereId($auth->id)->update([
+        //     'username' => $request->username,
+        //     'email' => $request->email,
+        //     'background_color' => $request->background_color,
+        //     'text_color' => $request->text_color,
+
+        // ]);
+
+        // if ($user) {
+
+        //     return response()->json([
+
+        //         'status' => 'success',
+        //         'data' => 'success'
+        //     ]);
+        // } else {
+        //     return response()->json([
+
+        //         'status' => 'noChanges',
+        //         'data' => 'no content has been added'
+        //     ]);
+        // }
     }
 
     public function show(User $user)

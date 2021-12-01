@@ -12,26 +12,39 @@
             <div class="modal-body">
                 <div class="form-group">
                     {!! Form::label('username', 'Username') !!}
-                    {!! Form::text('username', null, ['class'=>'form-control username-set',
+                    {!! Form::text('username', null, ['class'=>'form-control username-set username_err',
                     'placeholder'=>'Enter email']) !!}
+                    <span class="invalid-feedback" role="alert">
+                        <strong class="username_seterror"></strong>
+                    </span>
                 </div>
 
                 <div class="form-group">
                     {!! Form::label('email', 'Email') !!}
-                    {!! Form::text('email', null,['class'=>'form-control email-set',
+                    {!! Form::text('email', null,['class'=>'form-control email-set email_err',
                     'aria-describedby'=>'emailHelp', 'placeholder'=>'Enter email'] ) !!}
+                    <span class="invalid-feedback" role="alert">
+                        <strong class="email_seterror"></strong>
+                    </span>
                 </div>
                 <div class="form-group">
                     {!! Form::label('background_color', 'Set Background Color') !!}
-                    {!! Form::text('background_color', null,['class'=>'form-control background_color-set',
+                    {!! Form::text('background_color', null,['class'=>'form-control background_color-set
+                    background_color_err',
                     'placeholder'=>'Background Link Color']
                     ) !!}
+                    <span class="invalid-feedback" role="alert">
+                        <strong class="background_color_seterror"></strong>
+                    </span>
                 </div>
                 <div class="form-group">
                     {!! Form::label('text_color', 'Set Text color') !!}
-                    {!! Form::text('text_color', null,['class'=>'form-control text_color-set',
+                    {!! Form::text('text_color', null,['class'=>'form-control text_color-set text_color_err',
                     'placeholder'=>'Enter Link Text Color']
                     ) !!}
+                    <span class="invalid-feedback" role="alert">
+                        <strong class="text_color_seterror"></strong>
+                    </span>
                 </div>
 
                 <div class="form-group">
@@ -42,16 +55,22 @@
                         <div class="custom-file">
                             {!! Form::file('image',['class'=>'custom-file-input', 'id'=>'inputGroupFile01'] ) !!}
                             {!! Form::label('image', 'Profile Image',
-                            ['class'=>'custom-file-label','id'=>'inputGroupFile01'])
+                            ['class'=>'custom-file-label image_err','id'=>'inputGroupFile01'])
                             !!}
+                            <span class="invalid-feedback" role="alert">
+                                <strong class="image_seterror "></strong>
+                            </span>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
                     {!! Form::label('password', 'Password') !!}
-                    {!! Form::password('password',['class'=>'form-control',
+                    {!! Form::password('password',['class'=>'form-control password_err',
                     'placeholder'=>'New Password', 'id'=>'editeUserPass']) !!}
+                    <span class="invalid-feedback" role="alert">
+                        <strong class="password_seterror"></strong>
+                    </span>
                     <small class="form-text text-muted">
                         If password field empty old password will not change.
                     </small>

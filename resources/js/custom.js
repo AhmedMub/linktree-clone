@@ -1,5 +1,13 @@
 const { ajax } = require("jquery");
 
+//fix bootstrap 4 not showing file name
+$('.custom-file-input').on('change',function(){
+    //get the file name
+    var fileName = $(this).val();
+    //replace the "Choose a file" label
+    $(this).next('.custom-file-label').html(fileName);
+})
+
 //create new Link
 $(function () {
     $('.create-new-link').on('submit', function(e) {
@@ -223,34 +231,51 @@ $(function() {
             data: formData,
 
             success: function(response) {
-
                 console.log(response);
+                if(response.status == 'fails') {
 
-                if(response.status == 400) {
 
                     $.each(response.errors, function(key, val) {
 
-                        // $('span.invalid-feedback').fadeIn();
-                        // $('strong.'+key+'_error').html(val[0]);
+                        $('span.invalid-feedback').fadeIn();
+                        $('strong.'+key+'_seterror').parents().find('.'+key+'_err').addClass('is-invalid');
+                        $('strong.'+key+'_seterror').html(val[0]);
                     });
+                } else if(response.status == 'test') {
+
+                    console.log(response);
+
+                    // toastr.options = {
+                    //     "positionClass": "toast-top-left",
+                    //     "timeOut": "4000",
+                    //     "extendedTimeOut": "1000",
+                    //     "progressBar": true,
+                    // }
+                    // toastr["warning"]("No Changes Has Been Detected");
+                    // console.log(response.data);
+
                 } else {
-                    // $('.msg-success').fadeIn();
-                    // $('.msg-success').html(response.success);
-                    // $('.invalid-feedback strong').html("");
+                    console.log(response.data);
+                    $('form').trigger('reset');
+                    $('input').removeClass('is-invalid');
+                    $('.invalid-feedback strong').html("");
+                    toastr.options = {
+                        "positionClass": "toast-top-left",
+                        "timeOut": "4000",
+                        "extendedTimeOut": "1000",
+                        "progressBar": true,
+                    }
+                    toastr["info"]("Link Has Been Updated Successfully");
 
-                    // //after 3 seconds message success displayed none
-                    // setTimeout(function () {
-
-                    //     $('.msg-success').fadeOut();
-                    //  }, 3000);
-
-                    // //refresh when close-btn clicked
-                    //  $('.btn-close').on('click', function () {
-                    //     location.reload();
-                    //   });
+                    setTimeout(() => {
+                        //refresh when close-btn clicked
+                        location.reload();
+                    }, 2000);
                 }
             },
             error: function (xhr) { console.log(xhr.responseText); }
           });
     });
 });
+
+
