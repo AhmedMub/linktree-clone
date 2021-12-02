@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -43,59 +46,35 @@ class UserController extends Controller
             ]);
         }
 
-        if ($request->image) {
 
-            $request->image->store('images');
-        }
-
-        if (!empty($request->password)) {
+        if ($request->password) {
 
             $request->validate([
                 'password' => ['regex:/^[a-z0-9\s]*$/i', 'min:3', 'confirmed'],
             ]);
-
-            User::whereId($auth->id)->update([
-                'password' => $request->password
-            ]);
+            $auth->password = Hash::make($request->password);
         }
 
-        //TODO detect image changes
-        if ($request->username !== $auth->username || $request->email !== $auth->email || $request->background_color !== $auth->background_color || $request->text_color !== $auth->text_color || $request->image !== $auth->image) {
+        if ($request->image) {
+
+            //to delete old image if the new image is updated
+            Storage::disk('public')->delete($auth->image);
+
+            $auth->image =  $request->image->store('images');
+        }
+        $auth->username = $request->username;
+        $auth->email = $request->email;
+        $auth->background_color = $request->background_color;
+        $auth->text_color = $request->text_color;
+
+        $auth->save();
+        if ($auth) {
+
             return response()->json([
 
-                'status' => 'test',
-                'data' => 'changed'
-            ]);
-        } else {
-            return response()->json([
-
-                'status' => 'test',
-                'data' => 'nochange'
+                'status' => 'success',
             ]);
         }
-
-        // $user = User::whereId($auth->id)->update([
-        //     'username' => $request->username,
-        //     'email' => $request->email,
-        //     'background_color' => $request->background_color,
-        //     'text_color' => $request->text_color,
-
-        // ]);
-
-        // if ($user) {
-
-        //     return response()->json([
-
-        //         'status' => 'success',
-        //         'data' => 'success'
-        //     ]);
-        // } else {
-        //     return response()->json([
-
-        //         'status' => 'noChanges',
-        //         'data' => 'no content has been added'
-        //     ]);
-        // }
     }
 
     public function show(User $user)

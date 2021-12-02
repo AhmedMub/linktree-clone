@@ -241,22 +241,8 @@ $(function() {
                         $('strong.'+key+'_seterror').parents().find('.'+key+'_err').addClass('is-invalid');
                         $('strong.'+key+'_seterror').html(val[0]);
                     });
-                } else if(response.status == 'test') {
-
-                    console.log(response);
-
-                    // toastr.options = {
-                    //     "positionClass": "toast-top-left",
-                    //     "timeOut": "4000",
-                    //     "extendedTimeOut": "1000",
-                    //     "progressBar": true,
-                    // }
-                    // toastr["warning"]("No Changes Has Been Detected");
-                    // console.log(response.data);
-
-                } else {
-                    console.log(response.data);
-                    $('form').trigger('reset');
+                }  else {
+                    $('.update-profile-set').trigger('reset');
                     $('input').removeClass('is-invalid');
                     $('.invalid-feedback strong').html("");
                     toastr.options = {
@@ -265,7 +251,7 @@ $(function() {
                         "extendedTimeOut": "1000",
                         "progressBar": true,
                     }
-                    toastr["info"]("Link Has Been Updated Successfully");
+                    toastr["success"]("Link Has Been Updated Successfully");
 
                     setTimeout(() => {
                         //refresh when close-btn clicked

@@ -14,7 +14,13 @@
         </div>
         <div class="col-sm-6 clearfix">
             <div class="user-profile pull-right">
-                <img class="avatar user-thumb" src=" {{asset('images/avatar.png')}} " alt="avatar">
+
+                {{-- check if user has image or use the default image --}}
+                @if (Auth::user()->image)
+                <img class="avatar user-thumb" src=" {{asset('storage/'.Auth::user()->image)}} " alt="avatar">
+                @else
+                <img class="avatar user-thumb" src=" {{asset('default/defAvatar.png')}} " alt="avatar">
+                @endif
                 <h4 class="user-name dropdown-toggle" data-toggle="dropdown"> {{Auth::user()->username}} <i
                         class="fa fa-angle-down"></i></h4>
                 <div class="dropdown-menu">

@@ -17,8 +17,8 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('username');
             $table->string('email')->unique();
-            $table->string('background_color')->nullable();
-            $table->string('text_color')->nullable();
+            $table->string('background_color')->default('fff');
+            $table->string('text_color')->default('fff');
             $table->text('image')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
