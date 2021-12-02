@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title> {{Auth::user()->username}} Linktree</title>
+    <title> Linktree</title>
 
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
@@ -27,14 +27,16 @@
 <body>
     <section class="user-page">
         <div class="row m-0">
-            @foreach ($user->links as $user)
+            @foreach ($userLinks as $user)
             <div class="col-md-8 offset-md-2 text-center pt-5">
                 <div class="avatar">
-                    <img src=" {{asset('storage/'.$user->image)}} " alt="avatar">
+                    <img src=" {{asset($user->image)}} " alt="avatar">
                 </div>
             </div>
-            <div class="user-links">
-                d
+            <div class="col-md-8 offset-md-2 text-center pt-5">
+                @foreach ($user->links as $ulink)
+                <div> {{$ulink->link}} </div>
+                @endforeach
             </div>
             @endforeach
         </div>

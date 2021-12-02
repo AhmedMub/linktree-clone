@@ -65,4 +65,15 @@ class User extends Authenticatable
     {
         return 'username';
     }
+
+    //check if user has image or use the default image
+    public function getImageAttribute($value)
+    {
+        if ($value) {
+
+            return "storage/" . $value;
+        }
+
+        return "default/defAvatar.png";
+    }
 }
