@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
     @livewireStyles
-    {{-- modernizr css --}}
+    {{-- modernizr --}}
     <script src="{{ asset('js/modernizr-2.8.3.min.js') }}"></script>
 </head>
 

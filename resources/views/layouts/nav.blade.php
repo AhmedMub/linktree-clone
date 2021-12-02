@@ -7,8 +7,9 @@
                     <h4 class="page-title pull-left">Dashboard</h4>
                 </a>
                 <ul class="breadcrumbs pull-left">
-                    <li><a href="index.html">{{Auth::user()->username}}</a></li>
-                    <li><span>Links</span></li>
+                    <li><a href=" {{route('user.page', Auth::user()->username)}} " target="_blank"><span>Go to your
+                                LinkTree</span></a>
+                    </li>
                 </ul>
             </div>
         </div>

@@ -18,7 +18,7 @@ class CreateLinksTable extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('name');
             $table->string('link')->unique();
-            $table->integer('status')->default(1); //1 will be active as default, 0 will be inactive status
+            $table->integer('status')->default(0); //0 will be active as default, 1 will be inactive status
             $table->timestamps();
         });
     }
