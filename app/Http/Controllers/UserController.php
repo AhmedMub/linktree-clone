@@ -31,8 +31,9 @@ class UserController extends Controller
 
             'username' => ['required', 'max:20', 'regex:/^[a-z0-9\s]*$/i'],
             'email' => ['required', 'email'],
-            'background_color' => ['min:2', 'regex:/^[a-z0-9\s]*$/i', 'nullable'],
-            'text_color' => ['max:20', 'regex:/^[a-z0-9\s]*$/i', 'nullable'],
+            'background_color' => ['min:2', 'regex:/^[#a-z0-9\s]*$/i', 'required'],
+            'text_color' => ['max:20', 'regex:/^[#a-z0-9\s]*$/i', 'required'],
+            'text_bg' => ['max:20', 'regex:/^[#a-z0-9\s]*$/i', 'required'],
             'image' => ['mimes:jpeg,png,jpg', 'max:500'],
         ]);
 
@@ -66,6 +67,7 @@ class UserController extends Controller
         $auth->email = $request->email;
         $auth->background_color = $request->background_color;
         $auth->text_color = $request->text_color;
+        $auth->text_bg = $request->text_bg;
 
         $auth->save();
         if ($auth) {
@@ -79,7 +81,13 @@ class UserController extends Controller
 
     public function show($user)
     {
+        //* when you use the $userLinks in foreach loop and use the links relationship this cause a secondary sql query to DB which is can effect performance for big projects,
+
+        //*Remedy for such case is to call the load method for the user object and pass the name of relationship by that it will lazy load the relationship automatically on to the $userLinks object before passing it to the view
+
         $userLinks = User::whereUsername($user)->get();
+
+        $userLinks->load('links');
 
         return view('public_pages.user', compact('userLinks'));
     }

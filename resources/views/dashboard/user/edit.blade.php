@@ -31,7 +31,7 @@
                     {!! Form::label('background_color', 'Set Background Color') !!}
                     {!! Form::text('background_color', null,['class'=>'form-control background_color-set
                     background_color_err',
-                    'placeholder'=>'Background Link Color']
+                    'placeholder'=>'Page background, Example:000']
                     ) !!}
                     <span class="invalid-feedback" role="alert">
                         <strong class="background_color_seterror"></strong>
@@ -40,10 +40,19 @@
                 <div class="form-group">
                     {!! Form::label('text_color', 'Set Text color') !!}
                     {!! Form::text('text_color', null,['class'=>'form-control text_color-set text_color_err',
-                    'placeholder'=>'Enter Link Text Color']
+                    'placeholder'=>'Link text color, Example:000']
                     ) !!}
                     <span class="invalid-feedback" role="alert">
                         <strong class="text_color_seterror"></strong>
+                    </span>
+                </div>
+                <div class="form-group">
+                    {!! Form::label('text_bg', 'Set Text Background') !!}
+                    {!! Form::text('text_bg', null,['class'=>'form-control text_bg-set text_bg_err',
+                    'placeholder'=>'Link background, Example:000']
+                    ) !!}
+                    <span class="invalid-feedback" role="alert">
+                        <strong class="text_bg_seterror"></strong>
                     </span>
                 </div>
 

@@ -19,6 +19,7 @@
                                 <th scope="col">Created At</th>
                                 <th scope="col">Updated At</th>
                                 <th scope="col">Visits</th>
+                                <th scope="col">Latest Visit</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -33,7 +34,9 @@
                                 </td>
                                 <td> {{$link->created_at->diffForHumans()}} </td>
                                 <td> {{$link->updated_at->diffForHumans()}} </td>
-                                <td>120</td>
+                                <td> {{$link->visits_count}} </td>
+                                <td> {{$link->visits_count ? $link->latest_visit->created_at->diffForHumans() : "N/A" }}
+                                </td>
                                 <td>
                                     <div class="d-flex justify-content-center">
                                         <a href=" {{route('links.edit', $link->id)}} " class="mr-2 edit-Link"

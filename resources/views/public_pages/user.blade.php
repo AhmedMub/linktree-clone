@@ -24,18 +24,29 @@
     <script src="{{ asset('js/modernizr-2.8.3.min.js') }}"></script>
 </head>
 
-<body>
-    <section class="user-page">
+@foreach ($userLinks as $ubg)
+
+<body class=" {{$ubg->background_color}} ">
+    @endforeach
+
+    <section class="container">
         <div class="row m-0">
             @foreach ($userLinks as $user)
-            <div class="col-md-8 offset-md-2 text-center pt-5">
-                <div class="avatar">
-                    <img src=" {{asset($user->image)}} " alt="avatar">
+            <div class="col-md-12">
+                <div class="avatar text-center mt-5">
+                    <img class="img-responsive" src=" {{asset($user->image)}} " alt="avatar">
+                    <div class="username mt-3"> {{"@".$user->username}} </div>
                 </div>
             </div>
-            <div class="col-md-8 offset-md-2 text-center pt-5">
+            <div class="col-md-12">
                 @foreach ($user->links as $ulink)
-                <div> {{$ulink->link}} </div>
+                <div class="user-links  text-center">
+                    <a style="color:{{$user->text_color}}; background-color:{{$user->text_bg}}"
+                        class="user-link btn usr-btn btn-primary btn-flat text-capitalize" href="{{$ulink->link}}"
+                        target="_blank" link-id="{{$ulink->id}}">
+                        {{$ulink->name}}
+                    </a>
+                </div>
                 @endforeach
             </div>
             @endforeach

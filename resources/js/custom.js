@@ -1,4 +1,5 @@
 const { ajax } = require("jquery");
+const axios = require('axios');
 
 //fix bootstrap 4 not showing file name
 $('.custom-file-input').on('change',function(){
@@ -42,7 +43,6 @@ $(function () {
                     $('form').trigger('reset');
                     $('input').removeClass('is-invalid');
                     $('.invalid-feedback strong').html("");
-                    console.log(response);
                     toastr.options = {
                         "positionClass": "toast-top-left",
                         "timeOut": "4000",
@@ -107,7 +107,6 @@ $(function () {
             data: formData,
             success: function (response) {
                 if(response.status == 'failed') {
-                    console.log(response);
                     $.each(response.errors, function (key, val) {
                         $(".inv-name-msg, .inv-link-msg").addClass('is-invalid');
                         $('span.invalid-feedback').fadeIn();
@@ -121,11 +120,9 @@ $(function () {
                         "progressBar": true,
                     }
                     toastr["warning"]("No Changes Has Been Detected");
-                    console.log(response);
 
                 } else {
 
-                    console.log(response);
                     $('form').trigger('reset');
                     $('input').removeClass('is-invalid');
                     $('.invalid-feedback strong').html("");
@@ -200,6 +197,7 @@ $(function() {
                 $('.email-set').attr('value', response.data.email);
                 $('.background_color-set').attr('value', response.data.background_color);
                 $('.text_color-set').attr('value', response.data.text_color);
+                $('.text_bg-set').attr('value', response.data.text_bg);
              },
 
         });
@@ -231,7 +229,6 @@ $(function() {
             data: formData,
 
             success: function(response) {
-                console.log(response);
                 if(response.status == 'fails') {
 
 
@@ -259,9 +256,19 @@ $(function() {
                     }, 2000);
                 }
             },
-            error: function (xhr) { console.log(xhr.responseText); }
           });
     });
 });
 
 
+$(function () {
+
+    $('.user-link').on('click', function (e) {
+
+        let linkId = $(this).attr('link-id');
+        let linkUrl= $(this).attr('href');
+        axios.post('/visits/' + linkId, {
+            link: linkUrl
+          });
+     });
+ });
