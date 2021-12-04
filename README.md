@@ -19,13 +19,17 @@
 To set up this project, first clone the repositiory
 
 Change your working directory into the project directory
-
+```
 $ cd linktree_clone
+```
 
 Then install dependencies using Composer
 
+```
 $ composer install
-
+```
 Run the application with the following command
 
+```
 $ php artisan serve
+```
