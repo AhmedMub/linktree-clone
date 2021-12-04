@@ -9,3 +9,24 @@
 ## Linktree Login 
 
 ![image](https://user-images.githubusercontent.com/32661307/144702587-6bfd8467-5e0a-4411-a38c-8aeb7818a2f5.png)
+
+## Linktree Dashboard 
+
+![image](https://user-images.githubusercontent.com/32661307/144702694-945c1d6b-f8e8-4177-ba24-449e3eaa42ee.png)
+
+
+A simple implementation of Link tree clone in Laravel.
+
+To set up this project, first clone the repositiory
+
+Change your working directory into the project directory
+
+$ cd linktree_clone
+
+Then install dependencies using Composer
+
+$ composer install
+
+Run the application with the following command
+
+$ php artisan serve
